@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ether</title>
+    <link rel="shortcut icon" type="lab-icon" href="https://res.cloudinary.com/dio49rnxg/image/upload/v1746520710/ether_icon_48x48_r4f81l.png" >
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://forminit.com/sdk/v1/forminit.js"></script>
+</head>
+<body>
+
+    <video
+        class="bg-video"
+        autoplay
+        muted
+        loop
+        playsinline
+    >
+        <source src="https://res.cloudinary.com/djmffrvpg/video/upload/v1789745092/15272502_3840_2160_30fps_vxszqj.mp4" type="video/mp4">
+    </video>
+
+     <div class="container">
+        <img
+            src="https://res.cloudinary.com/dio49rnxg/image/upload/v1747799877/ether_logo_white_transparent_ypy0dw.png"
+            alt="ether"
+            class="logo"
+        >
+
+
+        <div class="email-section">
+            <h2 class="email-heading">subscribe FOR YOUR AWARENESS to stay updated on the latest. <br> we'll be back soon.</h2>
+
+            <form id="contact-form" class="email-form">
+                <div class="email-name-row">
+                    <input
+                        type="text"
+                        name="fi-sender-firstName"
+                        class="email-input"
+                        placeholder="first name"
+                        required
+                    >
+                    <input
+                        type="text"
+                        name="fi-sender-lastName"
+                        class="email-input"
+                        placeholder="last name"
+                        required
+                    >
+                </div>
+                <input
+                    type="email"
+                    name="fi-sender-email"
+                    class="email-input"
+                    placeholder="enter your email"
+                    required
+                >
+                <button type="submit" class="submit-btn" id="submit-btn">subscribe</button>
+                <p class="form-status" id="form-status"></p>
+            </form>
+        </div>
+
+        <div class="socials">
+            <a href="https://www.instagram.com/madebyether" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="instagram">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@madebyether" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="tiktok">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.5 3c.3 2.2 1.7 3.9 4 4.2v3.1c-1.4.1-2.7-.3-4-1.1v6.1c0 3.4-2.7 5.9-6 5.9-3.3 0-6-2.5-6-5.9 0-3.3 2.6-5.8 5.8-5.9v3.2c-1.5.1-2.7 1.2-2.7 2.7 0 1.6 1.3 2.8 2.9 2.8 1.6 0 2.9-1.3 2.9-2.9V3h3.1z" fill="currentColor"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const forminit = new Forminit();
+        const FORM_ID = "x0vsqxq07e6";
+
+        const form = document.getElementById("contact-form");
+        const submitBtn = document.getElementById("submit-btn");
+        const status = document.getElementById("form-status");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "subscribing...";
+            status.textContent = "";
+
+            const formData = new FormData(form);
+            const { data, error } = await forminit.submit(FORM_ID, formData);
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "subscribe";
+
+            if (error) {
+                status.textContent = error.message;
+                return;
+            }
+
+            status.textContent = "you're on the list.";
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
